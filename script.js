@@ -1,3 +1,7 @@
+
+//  Kan du plocka bort ngnkod som tömmer imgContainer?
+//  Se över döpning av variabler!
+
 let main = document.querySelector('main');
 let imgContainer = document.querySelector('.imgContainer');
 let h1 = document.querySelector('h1');
@@ -10,7 +14,7 @@ let ul = document.createElement('ul')
 let p = document.createElement('p');
 
 iconfooter.addEventListener('click', reloadPage);
-iconheader.addEventListener('click', clicki)
+iconheader.addEventListener('click', startPage)
 
 let currentBreed;
 let allSubBreeds;
@@ -35,7 +39,6 @@ function renderBreeds(message) {
         select.appendChild(option);
         option.textContent = capitalize(dogs);
     }    
-
 }    
 
 function selected(select) {
@@ -82,27 +85,25 @@ function getBreedspics(value) {
 function renderImg(images) {
     imgContainer.innerHTML = "";
     for (let img of images) {
-    let div = document.createElement('div');
-    let imgs = document.createElement('img');
-    imgContainer.appendChild(div);
-    div.appendChild(imgs);
+        let div = document.createElement('div');
+        let imgs = document.createElement('img');
+        imgContainer.appendChild(div);
+        div.appendChild(imgs);
 
-    div.classList = 'imgdiv';
-    imgs.src = img;
+        div.classList = 'imgdiv';
+        imgs.src = img;
    }
 }
 
 function reloadPage() {
-    imgContainer.innerHTML = "";
-    let currentBreed = window.location.hash;
-    let split = window.location.hash.substring(1).split("-"); 
+    let split = window.location.hash.substring(1).split("-");   
     ul.innerHTML = "";
 
-    if (split.length === 2) {
-        let breed = split[0];
-        let subbreed = split[1];
-        getimgsSubBreeds(breed, subbreed);
-        h1.textContent = capitalize(subbreed);
+    if (split.length === 2) {  
+        let breed = split[0];   
+        let subbreed = split[1];    
+        getimgsSubBreeds(breed, subbreed);  
+        h1.textContent = capitalize(subbreed); 
         select.value = breed;
         getSubBreeds(breed);
     } else if (split.length === 1 && window.location.hash){  
@@ -116,9 +117,9 @@ function reloadPage() {
     }
 }
 
-function clicki() {    
+function startPage() {    
     window.location.href = "index.html"; 
-    getimgsSubBreeds()
+    getimgsSubBreeds();
 }
 
 function renderImgByBreed(arr) { 
